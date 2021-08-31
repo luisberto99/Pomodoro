@@ -1,0 +1,15 @@
+<div class="timer">
+    <div class="timer_circle">
+        <span class="timer_time">{{ time }}</span>
+        <div class="timer_buttoms">
+            <div (click)="control()" class="timer_control">
+                <i *ngIf="runTimer" class="fas fa-pause-circle"></i>
+                <i *ngIf="!runTimer" class="fas fa-play-circle"></i>
+            </div>
+            <div (click)="reset()" class="timer_reset">
+                <i class="fas fa-undo-alt"></i>
+            </div>
+        </div>
+        <div [ngStyle]="{'height' : fillHeigth}" class="timer_fill"></div>
+    </div>
+</div>
