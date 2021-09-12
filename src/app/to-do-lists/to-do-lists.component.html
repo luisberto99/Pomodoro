@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="newTask d-flex flex-row justify-content-between">
+        <hr>
+        <span class="p-float-label col-2">
+            <input name="categoria" pInputText [(ngModel)]="cat">
+            <label for="categoria">Categoria</label>
+        </span>
+
+        <div class="p-inputgroup">
+            <input placeholder="Nueva Tarea" pInputText type="text" class="w-100" [(ngModel)]="tarea" required>
+            <button type="button" (click)="agregar()" pButton pRipple icon="pi pi-plus" styleClass="p-button-success"></button>
+        </div>
+        <hr>
+    </div>
+
+    <div class="todoList">
+        <div class="tarea" *ngFor="let tarea of tareas">
+            <div class="row">
+                <div class="categoria col-2">
+                    Categoria: {{ tarea.categoria }}
+                </div>
+                <div class="descripcion col-8">
+                    Descripcion: {{ tarea.descripcion }}
+                </div>
+                <div class="options col-2">
+                    <button (click)="play(tarea.id)">
+                        <span *ngIf="tareaActive != tarea.id"  class="pi pi-play"></span>
+                        <span *ngIf="tareaActive == tarea.id" class="pi pi-pause"></span>
+                    </button>
+                    <button (click)="plusPomodoro(tarea.id, tarea.pomodorosEstimados)">
+                        {{ tarea.pomodorosEstimados }}
+                    </button>
+                    <button pButton icon="pi pi-trash" (click)="delete(tarea.id, $event)">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<p-toast position="top-right"></p-toast>
+
+<p-confirmPopup></p-confirmPopup>

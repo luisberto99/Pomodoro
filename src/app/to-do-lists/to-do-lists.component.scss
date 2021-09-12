@@ -1,0 +1,43 @@
+$color-1: #11698C;
+$color-2: #122426;
+$color-3: #F2DDD5;
+$color-4: #F28705;
+$color-5: #8C6E68;
+.container {
+    width: 80%;
+    margin: auto;
+    background-color: $color-1;
+}
+
+.options {
+    max-width: 100px;
+}
+
+.tarea {
+    font-size: 1.2rem;
+    color: white;
+    height: 60px;
+    border-bottom: 1px solid rgba($color-2, 0.3);
+    padding: 0 10px;
+    .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+    }
+    .options {
+        display: flex;
+        flex-direction: row;
+        button {
+            background-color: $color-4;
+            border-radius: 50%;
+            min-width: 50px;
+            height: 50px;
+            margin: 0 5px;
+            border: 1px solid rgba($color-4, 0.7);
+        }
+    }
+    &:hover {
+        background-color: $color-2;
+    }
+}

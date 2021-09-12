@@ -30,7 +30,7 @@ $color-5: #8C6E68;
             bottom: 0;
             left: 0;
             right: 0;
-            border: 5px solid white;
+            border: 5px solid $color-1;
             z-index: 200;
             border-radius: 50%;
         }
@@ -49,7 +49,7 @@ $color-5: #8C6E68;
         bottom: 5px;
         height: 0;
         width: 100%;
-        background-color: $color-1;
+        background-color: $color-2;
         z-index: 100;
         transition: all 1s ease-in-out;
     }
