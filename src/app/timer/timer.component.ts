@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
@@ -6,13 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
-  runTimer = false;
+  @Input() tareaActiva = 0
+  @Input () runTimer = false;
+  @Output() run = new EventEmitter;
+  
+  
   breakLength = 5;
   sessionLegth = 25 * 30;
   timeLeft = this.sessionLegth;
   fillHeigth = '0%';
   time = this.secondsToHms(this.sessionLegth);
   configuracion:any = {};
+
 
   constructor() {
     
@@ -52,6 +57,7 @@ export class TimerComponent implements OnInit {
 
   control() {
     this.runTimer = !this.runTimer;
+    this.run.emit(this.runTimer);
   }
 
   reset(){

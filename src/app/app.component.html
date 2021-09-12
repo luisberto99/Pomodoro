@@ -1,5 +1,5 @@
 <router-outlet>
 </router-outlet>
-<app-timer></app-timer>
+<app-timer (run)="run($event)" [runTimer]="runTimer" [tareaActiva]='tareaActiva'></app-timer>
 
-<app-to-do-lists></app-to-do-lists>
+<app-to-do-lists [runTimer]="runTimer" (playPomodoro)="playPomodoro($event)"></app-to-do-lists>

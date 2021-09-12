@@ -15,11 +15,28 @@ export class AppComponent {
     breakStart: false
   }
 
+  tareaActiva = 0;
+  runTimer = false;
+
   ngOnInit(): void {
     if(localStorage.getItem('pomodoro') == null){
       localStorage.setItem('pomodoro', JSON.stringify(this.configuracion))
     }else{
       this.configuracion = JSON.parse(localStorage.getItem('pomodoro') + '')
     }
+  }
+
+  playPomodoro(id: number){
+    if(id != 0){
+      this.runTimer = true;
+      this.tareaActiva = id;
+    }
+    else{
+      this.runTimer = false
+    }
+  }
+
+  run(runTimer:boolean){
+    this.runTimer = runTimer;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input  } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
 import Dexie from "dexie";
@@ -9,6 +9,9 @@ import Dexie from "dexie";
   styleUrls: ['./to-do-lists.component.scss'],
 })
 export class ToDoListsComponent implements OnInit {
+  @Input() runTimer = false;
+  @Output() playPomodoro = new EventEmitter()
+
 
   db: any;
   rows: Tarea[] = [];
@@ -20,7 +23,7 @@ export class ToDoListsComponent implements OnInit {
   categoria = [];
   cat = [];
   tareaActive = 0;
-
+  
   constructor(private messageService: MessageService,
               private confirmationService: ConfirmationService) {
     let a = JSON.parse(localStorage.getItem('tareas') + '');
@@ -114,12 +117,27 @@ export class ToDoListsComponent implements OnInit {
   }
 
   play(id:number){
-    if(this.tareaActive != id){
-      this.tareaActive = id
-      console.log(id);
-    }else{
-      this.tareaActive = 0;
+    if(this.tareaActive == id){
+      if(!this.runTimer){
+        this.runTimer = true;
+        this.playPomodoro.emit(id);
+      }else{
+        this.runTimer = false;
+        this.playPomodoro.emit(0);
+      }
     }
+  else{
+    if(!this.runTimer){
+      this.tareaActive = id
+      this.runTimer = true;
+      this.playPomodoro.emit(id);
+    }else{
+      /* TODO SE ESTA EJECUTANDO UN POMODORO DE OTRA TAREA Y HAY QUE PAUSARLO E INICIAR OTRO */
+      this.runTimer = false;
+      this.tareaActive = id;
+      this.playPomodoro.emit(0)
+    }
+  }
   }
 
   plusPomodoro(id:number, pomodoros:number){

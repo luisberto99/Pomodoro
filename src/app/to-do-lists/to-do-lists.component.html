@@ -24,8 +24,10 @@
                 </div>
                 <div class="options col-2">
                     <button (click)="play(tarea.id)">
-                        <span *ngIf="tareaActive != tarea.id"  class="pi pi-play"></span>
-                        <span *ngIf="tareaActive == tarea.id" class="pi pi-pause"></span>
+                        <span *ngIf="(tareaActive == tarea.id && !runTimer)" class="pi pi-play"></span>
+                        <span *ngIf="tareaActive != tarea.id && !runTimer"  class="pi pi-play"></span>
+                        <span *ngIf="tareaActive != tarea.id && runTimer"  class="pi pi-play"></span>
+                        <span *ngIf="(tareaActive == tarea.id && runTimer)" class="pi pi-pause"></span>
                     </button>
                     <button (click)="plusPomodoro(tarea.id, tarea.pomodorosEstimados)">
                         {{ tarea.pomodorosEstimados }}
